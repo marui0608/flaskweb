@@ -73,5 +73,15 @@ def forge():
         db.session.add(movie)
     db.session.commit()
     click.echo("导入数据库完成")
+
+
+# 404 错误的处理函数
+@app.errorhandler(404)
+def page_not_found(e):
+    user = User.query.first()
+    return render_template('404.html',user=user)
+
+
+
 # if __name__ == '__main__':
 #     app.run(debug=True)
