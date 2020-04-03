@@ -33,11 +33,9 @@ class Movie(db.Model):
 @app.route('/')
 def index():
     # print(url_for('index',name="hahah"))
-    
-
-    user = User.query.first()
+    # user = User.query.first()
     movies = Movie.query.all()
-    return render_template("index.html",user=user,movies=movies)
+    return render_template("index.html",movies=movies)
 
 
 # 自定义命令
@@ -78,9 +76,14 @@ def forge():
 # 404 错误的处理函数
 @app.errorhandler(404)
 def page_not_found(e):
-    user = User.query.first()
-    return render_template('404.html',user=user)
+    # user = User.query.first()
+    return render_template('404.html')
 
+# 上下文处理函数
+@app.context_processor
+def common_user():
+    user = User.query.first()
+    return dict(user=user)
 
 
 # if __name__ == '__main__':
