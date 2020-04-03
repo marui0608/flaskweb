@@ -13,6 +13,10 @@
         <img src="{{ url_for('static',filename='images/lp.jpg') }}" alt="头像" class="lp">
         {{ user.name }}.project
     </h2>
+    <!-- 提醒flash -->
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
     <nav>
         <ul>
             <li>
