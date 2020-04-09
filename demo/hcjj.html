@@ -62,6 +62,12 @@
                 </div>
             </li>
         </ul>
+        <!-- 修改标题 -->
+        <div class="footer">
+            <hr>
+            <span>改变你的标题</span>
+            <input type="text" class="js-change-title" value="我的购物车清单">
+        </div>
     </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -75,15 +81,26 @@
                 return;
             }
             $ul = $('ul')
+             // 创建标签   添加到ul里
             $li = $('<li>').appendTo($ul)
             $div = $('<div>').addClass('checkbox').appendTo($li)
             $label = $('<label>').appendTo($div)
-            $('<input>').addClass('js-item').attr('type','checkbox').appendTo($label) 
-            $label.append(value)
-            $('.js-new-item').val('');
+            $('<input>').addClass("js-item").attr('type','checkbox').appendTo($label).click(toggleRemoved)
+            // 将input添加到label里  .click()添加点击事件
+            $label.append(value)    // 添加标签用appendTo,添加文字用append
+            // 下级添加到上级里，用appendTo,上级里添加下级，用append
+            // $('.js-new-item').val('');
         }
-
+        function toggleRemoved(ev){
+            // 获取当前点击的对象      closest 遍历  相当于 for
+            $(ev.currentTarget).closest('li').toggleClass('removed')   // toggleClass 反复的添加
+        }
+        function onChangeTiitle(){
+            $('h2').text($('.js-change-title').val())
+        }
         $('.js-add').click(onADD)
+        $('.js-item').click(toggleRemoved)
+        $('.js-change-title').keyup(onChangeTiitle)
     })
 </script>
 </html>
