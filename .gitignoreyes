@@ -6,3 +6,4 @@ __pycache
 env
 .env
 *.data.db
+node_modules/
