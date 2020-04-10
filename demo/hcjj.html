@@ -89,18 +89,18 @@
             // 将input添加到label里  .click()添加点击事件
             $label.append(value)    // 添加标签用appendTo,添加文字用append
             // 下级添加到上级里，用appendTo,上级里添加下级，用append
-            // $('.js-new-item').val('');
+            $('.js-new-item').val('');
         }
         function toggleRemoved(ev){
             // 获取当前点击的对象      closest 遍历  相当于 for
             $(ev.currentTarget).closest('li').toggleClass('removed')   // toggleClass 反复的添加
         }
-        function onChangeTiitle(){
+        function onChangeTitle(){
             $('h2').text($('.js-change-title').val())
         }
         $('.js-add').click(onADD)
         $('.js-item').click(toggleRemoved)
-        $('.js-change-title').keyup(onChangeTiitle)
+        $('.js-change-title').keyup(onChangeTitle)
     })
 </script>
 </html>
