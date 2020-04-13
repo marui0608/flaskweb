@@ -1,6 +1,6 @@
-# pratcise
+# text2
 
-> A Vue.js project
+> Vue练习
 
 ## Build Setup
 
