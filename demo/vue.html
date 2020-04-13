@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue购物车</title>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
         .container {
             width: 40%;
@@ -61,11 +62,19 @@
             <!-- <input v-model="title"> -->
             <!-- v-model  双向数据绑定 -->
         </div>
+        <div>
+            {{ num }}的平方是<span v-square='num'></span>
+        </div>
     </div>
 </body>
-<!-- <script src="https://cdn.bootcss.com/vue/2.6.11/vue.esm.js"></script> -->
+
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
 <script>
+    // 自定义指令square v-square
+    Vue.directive('square', function (el, binding) {
+        el.innerHTML = Math.pow(binding.value,2)
+    })
     // var app = new Vue({
     //     el: '#app',
     //     data: {
@@ -84,7 +93,8 @@
             }
         ],
         title: "我的购物车",
-        newItem: ''
+        newItem: '',
+        num:10
     }
     // 创建列表组件
     var ItemsComponent = Vue.extend({
