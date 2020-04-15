@@ -9,9 +9,10 @@
           <ul>
             <li v-for="item in product.list">
                 <a v-bind:href="item.url">{{ item.title }}</a>
+                <span v-if="item.hot== true" style="background:red;color:white;">HOT</span>
             </li>
           </ul>
-          <div class="hr"></div>
+          <div class="hr" v-if="product.title=='PC产品'"></div>
         </template> 
       </div>
       <!-- 最新消息 -->
@@ -88,7 +89,9 @@ export default {
             },
             {
               title: "产品助手",
-              url: "http://weixin.com"
+              url: "http://weixin.com",
+              hot:true
+              
             },
             {
               title: "智能地图",
@@ -96,7 +99,8 @@ export default {
             },
             {
               title: "语音助手",
-              url: "http://phone.com"
+              url: "http://phone.com",
+              hot:true
             }
           ]
         }
