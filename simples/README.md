@@ -1,4 +1,4 @@
-# componentdemo
+# simples
 
 > A Vue.js project
 

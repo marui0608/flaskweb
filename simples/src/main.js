@@ -1,10 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Hello from './Hello.vue'
 
 new Vue({
   el: '#app',
-  // renderL: h => h(App),
   components:{
     App
+  }
+})
+
+new Vue({
+  el:'#hello',
+  components:{
+    Hello
   }
 })
