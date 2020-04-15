@@ -5,19 +5,19 @@ import IndexPage from './pages/index.vue'
 
 // 调用
 Vue.use(VueRouter)
-// 实例化 VueRouter
+// 实例化 VueRouter    let 变量申明符
 let router = new VueRouter({
   mode:'history',   // 记录路由   可以让页面 回退
   routes:[
     {
       path:'/',
-      component:IndexPage
+      component:IndexPage    // 根路径页面
     }
   ]
 })
 
 new Vue({
-  el: '#app',
+  el: '#app', 
   router,
   components:{
     Layout

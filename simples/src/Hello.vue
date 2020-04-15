@@ -9,7 +9,7 @@ export default {
     name:"hello",
     data() {
         return {
-            mr:"王国芳我爱你，一生一世 - - ！"
+            mr:"宇宙无敌大坏蛋 - - ！"
         }
     },
 }
