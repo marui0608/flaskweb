@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="index-right">
-      <div style="margin:0 auto;width:900px;height:300px;background:red;">将来使用组件来代替</div>
+      <slider-component></slider-component>
       <div class="index-boader-list">
         <div class="index-boader-item" v-for="board in boardList">
           <div class="index-boader-item-inner">
@@ -45,7 +45,11 @@
 
 <script>
 import axios from 'axios'    // 第一步引入
+import SliderComponent from '../components/sliderComponent'
 export default {
+  components:{
+    SliderComponent
+  },
   mounted() {                // 一般都写在这个里面
     axios.get('api/getNewsList').then((res) => {
       console.log(res)
@@ -76,7 +80,7 @@ export default {
     return {
       newsList: [],
       productList: null,
-      boardList:null,
+      boardList: null,
     }
   }
 };
@@ -106,11 +110,13 @@ export default {
   color: #ffffff;
   padding: 10px 15px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .index-left-block h3 {
   color: #222;
   font-weight: bolder;
   padding: 0 15px 0 15px;
+  cursor: pointer;
 }
 .index-left-block ul {
   padding: 10px 15px;
@@ -120,7 +126,7 @@ export default {
 }
 .index-right {
   width: 900px;
-  margin-top: 18px;
+  margin-top: 15px;
 }
 .index-boader-list {
   display: flex;
@@ -167,5 +173,6 @@ export default {
   color: #ffff;
   background: purple;
   font-size: 13px;
+  cursor: pointer;
 }
 </style>
