@@ -29,31 +29,10 @@
     <div class="index-right">
       <div style="margin:0 auto;width:900px;height:300px;background:red;">将来使用组件来代替</div>
       <div class="index-boader-list">
-        <div class="index-boader-item">
+        <div class="index-boader-item" v-for="board in boardList">
           <div class="index-boader-item-inner">
-            <h2>第1个</h2>
-            <p>第1个商品描述</p>
-            <div class="index-boader-button">立即购买</div>
-          </div>
-        </div>
-        <div class="index-boader-item">
-          <div class="index-boader-item-inner">
-            <h2>第1个</h2>
-            <p>第1个商品描述</p>
-            <div class="index-boader-button">立即购买</div>
-          </div>
-        </div>
-        <div class="index-boader-item">
-          <div class="index-boader-item-inner">
-            <h2>第1个</h2>
-            <p>第1个商品描述</p>
-            <div class="index-boader-button">立即购买</div>
-          </div>
-        </div>
-        <div class="index-boader-item">
-          <div class="index-boader-item-inner">
-            <h2>第1个</h2>
-            <p>第1个商品描述</p>
+            <h2>{{ board.title }}</h2>
+            <p>{{ board.description }}</p>
             <div class="index-boader-button">立即购买</div>
           </div>
         </div>
@@ -75,18 +54,18 @@ export default {
     .catch((error) => {
       console.log(error)
     }
-    )
-    axios.get('api/getProductsList').then((res) => {
+    ),
+    axios.get('api/getProductList').then((res) => {
       console.log(res)
-      this.newsList = res.data.list
+      this.productList = res.data
     })
     .catch((error) => {
       console.log(error)
     }
-    )
+    ),
     axios.get('api/getBoardList').then((res) => {
       console.log(res)
-      this.newsList = res.data.list
+      this.boardList = res.data
     })
     .catch((error) => {
       console.log(error)
@@ -95,74 +74,10 @@ export default {
   },
   data() {
     return {
-      newsList: [
-            {
-              title: "数据统计",
-              url: "http://starcraft.com"
-            },
-            {
-              title: "数据预测",
-              url: "http://warcarft.com"
-            },
-            {
-              title: "流量分析",
-              url: "http://overwatch.com",
-              hot: true
-            },
-            {
-              title: "广告发布",
-              url: "http://hearstone.com"
-            }
-          ],
-      productList: {
-        pc: {
-          title: "PC产品",
-          list: [
-            {
-              title: "数据统计",
-              url: "http://starcraft.com"
-            },
-            {
-              title: "数据预测",
-              url: "http://warcarft.com"
-            },
-            {
-              title: "流量分析",
-              url: "http://overwatch.com",
-              hot: true
-            },
-            {
-              title: "广告发布",
-              url: "http://hearstone.com"
-            }
-          ]
-        },
-        app: {
-          title: "手机应用类",
-          last:true,
-          list: [
-            {
-              title: "91助手",
-              url: "http://weixin.com"
-            },
-            {
-              title: "产品助手",
-              url: "http://weixin.com",
-              hot: true
-            },
-            {
-              title: "智能地图",
-              url: "http://maps.com"
-            },
-            {
-              title: "语音助手",
-              url: "http://phone.com",
-              hot: true
-            }
-          ]
-        }
-      }
-    };
+      newsList: [],
+      productList: null,
+      boardList:null,
+    }
   }
 };
 </script>
