@@ -3,7 +3,7 @@
       <!-- 头部 -->
       <div class="app-head">
           <div class="app-head-inner">
-              <img src="./assets/logo.png" alt="">
+              <img src="./assets/logo.png" alt=""><span class="app-title">3C产品商城</span>
               <div class="head-nav">
                 <ul class="nav-list">
                   <li>登录</li>
@@ -122,5 +122,11 @@ body{
   line-height: 80px;
   background: #e3e4e8;
   margin-top: 30px;
+}
+.app-title{
+  color: #f0f2f5;
+  font-size: 30px;
+  margin-left: 20px;
+  font-weight: bolder;
 }
 </style>
