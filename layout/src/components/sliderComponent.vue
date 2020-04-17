@@ -1,12 +1,12 @@
 <template>
     <div class="slider-wrapper" @mousemove="clearInv" @mouseout="runInv">     <!-- 绑定事件 鼠标 进入、出去 -->
         <!-- 五张轮播图 -->                <!-- 清除定时   运行定时 -->
-        <div v-show="nowIndex === index" class="slider-item" v-bind:class="['item'+[index+1]]" v-for="(imgUrl,index) in sliderImgList" v-bind:key="index">
+        <div v-show="nowIndex === index" class="slider-item" v-bind:class="['item'+[index+1]]" v-for="(item,index) in sliderImgList" v-bind:key="index">
             <a href="">
-                <img v-bind:src="imgUrl" alt="">
+                <img v-bind:src="item.imgUrl" alt="">
             </a>
         </div>
-        
+        <h2 class="slider-title">{{ sliderImgList[nowIndex].title }}</h2>
         <!-- 上一张下一章按钮 -->
         <a v-on:click="preHandler" class="btn pre-btn" href="javascript:void(0)">&lt;</a>
         <a v-on:click="nextHandler" class="btn next-btn" href="javascript:void(0)">&gt;</a>
@@ -30,12 +30,32 @@ export default {
         return {
             nowIndex:0,
             sliderImgList:[
-                require('../assets/lp.jpg'),
-                require('../assets/lp1.jpg'),
-                require('../assets/lp2.jpg'),
-                require('../assets/lp3.jpg'),
-                require('../assets/psbe.jpg'),
-            ]
+                {
+                    imgUrl:require('../assets/lp.jpg'),
+                    title:'第一张图片'
+                },
+                {
+                    imgUrl:require('../assets/lp1.jpg'),
+                    title:'第二张图片'
+                },
+                {
+                    imgUrl:require('../assets/lp2.jpg'),
+                    title:'三张图片'
+                },
+                {
+                    imgUrl:require('../assets/lp3.jpg'),
+                    title:'第四张图片'
+                },
+                {
+                    imgUrl:require('../assets/psbe.jpg'),
+                    title:'第五张图片'
+                }
+                
+                
+                
+                
+                
+            ],
         }
     },
     methods: {
@@ -145,5 +165,18 @@ export default {
     }
     .next-btn{
         right: 10px;
+    }
+    .slider-title{
+        background: #000000;
+        color: white;
+        height: 30px;
+        position: absolute;
+        bottom: 0px;
+        left: 10px;
+        z-index: 400;
+        font-size: 30px;
+        text-align: center;
+        line-height: 30px;
+        opacity: 0.6;
     }
 </style>
