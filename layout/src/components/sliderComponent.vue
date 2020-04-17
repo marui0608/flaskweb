@@ -1,21 +1,18 @@
 <template>
     <div class="slider-wrapper" @mousemove="clearInv" @mouseout="runInv">     <!-- 绑定事件 鼠标 进入、出去 -->
         <!-- 五张轮播图 -->                <!-- 清除定时   运行定时 -->
-        <div class="slider-item item1">1</div>
-        <div class="slider-item item2">2</div>
-        <div class="slider-item item3">3</div>
-        <div class="slider-item item4">4</div>
-        <div class="slider-item item5">5</div>
-
+        <div v-show="nowIndex === index" class="slider-item" v-bind:class="['item'+[index+1]]" v-for="(imgUrl,index) in sliderImgList" v-bind:key="index">
+            <a href="">
+                <img v-bind:src="imgUrl" alt="">
+            </a>
+        </div>
+        
+        <!-- 上一张下一章按钮 -->
+        <a v-on:click="preHandler" class="btn pre-btn" href="javascript:void(0)">&lt;</a>
+        <a v-on:click="nextHandler" class="btn next-btn" href="javascript:void(0)">&gt;</a>
         <!-- 下方圆点 -->
         <ul class="slider-dots">
-            <li>&lt;</li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li>&gt;</li>
+            <li v-on:click="clickDots(index)" v-for="(item,index) in sliderImgList" v-bind:key="index">{{ index+1 }}</li>
         </ul>
     </div>
 </template>
@@ -31,20 +28,45 @@ export default {
     },
     data() {
         return {
-            
+            nowIndex:0,
+            sliderImgList:[
+                require('../assets/lp.jpg'),
+                require('../assets/lp1.jpg'),
+                require('../assets/lp2.jpg'),
+                require('../assets/lp3.jpg'),
+                require('../assets/psbe.jpg'),
+            ]
         }
     },
     methods: {
+        clickDots(index){
+            this.nowIndex = index
+        },
+        preHandler(){
+            this.nowIndex--;
+            if(this.nowIndex < 0){
+                this.nowIndex = 3
+            }
+        },
+        nextHandler(){
+            this.autoPlay()
+        },
+        autoPlay(){
+            this.nowIndex++;
+            if(this.nowIndex > 3){
+                this.nowIndex = 0
+            }
+        },
         runInv(){
             // 设置定时器
-            setInterval(()=>{
-                // 开启定时器
-
-            },this.inv)
+            this.invId = setInterval(this.autoPlay,2000)
         },
         clearInv(){
-
+            clearInterval(this.invId)
         }
+    },
+    created() {
+        this.runInv()
     },
 
 }
@@ -55,7 +77,6 @@ export default {
     .slider-wrapper{
         width: 900px;
         height: 500px;
-        background: red;
         position: relative;
     }
     .slider-item{
@@ -65,6 +86,10 @@ export default {
         line-height: 500px;
         font-size: 40px;
         position: absolute;     /* 重叠定位 */
+    }
+    .slider-item img{
+        width: 900px;
+        height: 500px;
     }
     .item1{
         z-index: 100;
@@ -85,6 +110,7 @@ export default {
         position: absolute;
         right: 60px;
         bottom: 20px;
+        z-index: 200;
     }
     .slider-dots li{
         width: 20px;
@@ -97,5 +123,27 @@ export default {
         float: left;
         margin: 0 10px;
         opacity: 0.6;    /* 透明度 */
+        cursor: pointer;
+    }
+    .btn{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        color: white;
+        background: #000;
+        font-size: 40px;
+        text-align: center;
+        line-height: 50px;
+        position: absolute;
+        top:50%;
+        margin-top: -25px;
+        z-index: 300;
+        opacity: 0.6;     /* 透明度 */
+    }
+    .pre-btn{
+        left: 10px;
+    }
+    .next-btn{
+        right: 10px;
     }
 </style>
